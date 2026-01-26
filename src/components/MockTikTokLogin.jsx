@@ -19,7 +19,9 @@ const MockTikTokLogin = () => {
     
     // 2. Generate a FAKE auth code (simulating TikTok's response)
     const mockCode = "MOCK_AUTH_CODE_" + Math.random().toString(36).substring(7);
+    // for invalid client_id simulation
     //  const mockCode = "MOCK_CLIENT_ERR";
+    // for invalid scope simulation
     //  const mockCode = "MOCK_SCOPE_ERR";
     // 3. Simulate network delay
     setTimeout(() => {
