@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { tiktokService } from '../services/tiktokService';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Login = () => {
@@ -15,32 +16,28 @@ const Login = () => {
   }, [searchParams]);
 
   const handleLogin = () => {
-    // Generate security state
-    const state = Math.random().toString(36).substring(7);
-    localStorage.setItem('oauth_state', state);
-
-    // Redirect to Mock Login
-    navigate('/mock-login');
+    // Redirect to Real TikTok Login
+    window.location.href = tiktokService.getLoginUrl();
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', fontFamily: 'sans-serif' }}>
-      
+
       <div style={{ width: '400px', textAlign: 'center' }}>
         <h1 style={{ marginBottom: '30px' }}>TikTok Ads Manager</h1>
 
         {/* ERROR BANNER - Only shows if there is an error */}
         {errorMessage && (
-          <div style={{ 
-            background: '#ffe6e6', 
-            color: '#d00', 
-            padding: '15px', 
-            borderRadius: '6px', 
+          <div style={{
+            background: '#ffe6e6',
+            color: '#d00',
+            padding: '15px',
+            borderRadius: '6px',
             marginBottom: '20px',
             border: '1px solid #fcc',
             textAlign: 'left'
           }}>
-            <strong>Login Failed:</strong><br/>
+            <strong>Login Failed:</strong><br />
             {errorMessage}
           </div>
         )}
@@ -49,16 +46,16 @@ const Login = () => {
           <p style={{ marginBottom: '20px', color: '#666' }}>
             Please connect your account to proceed.
           </p>
-          
-          <button 
-            onClick={handleLogin} 
-            style={{ 
-              padding: '15px 30px', 
-              background: 'black', 
-              color: 'white', 
-              fontSize: '16px', 
-              cursor: 'pointer', 
-              border: 'none', 
+
+          <button
+            onClick={handleLogin}
+            style={{
+              padding: '15px 30px',
+              background: 'black',
+              color: 'white',
+              fontSize: '16px',
+              cursor: 'pointer',
+              border: 'none',
               borderRadius: '4px',
               width: '100%'
             }}
